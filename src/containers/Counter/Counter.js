@@ -35,6 +35,7 @@ class Counter extends Component {
 	};
 
 	render() {
+		console.log("PROPS:::", this.props);
 		return (
 			<div>
 				<CounterOutput value={this.props.ctr} />
@@ -48,6 +49,15 @@ class Counter extends Component {
 				/>
 				<CounterControl label="Add 5" clicked={this.props.addCounter} />
 				<CounterControl label="Dec 5" clicked={this.props.subCounter} />
+				<button onClick={this.props.handleClick}>Save Result</button>
+
+				<div>
+					<ul>
+						{this.props.result.map(res => (
+							<li key={res.id}>{res.value}</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		);
 	}
@@ -55,7 +65,8 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
 	return {
-		ctr: state.counter
+		ctr: state.counter,
+		result: state.result
 	};
 };
 
@@ -64,7 +75,8 @@ const mapDispatchToProps = dispatch => {
 		incrementCounter: () => dispatch({ type: "INC_COUNTER" }),
 		decrementCounter: () => dispatch({ type: "DEC_COUNTER" }),
 		addCounter: () => dispatch({ type: "ADD_COUNTER" }),
-		subCounter: () => dispatch({ type: "SUB_COUNTER" })
+		subCounter: () => dispatch({ type: "SUB_COUNTER" }),
+		handleClick: () => dispatch({ type: "SAVE_COUNTER" })
 	};
 };
 

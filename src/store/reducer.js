@@ -1,5 +1,6 @@
 const initialState = {
-	counter: 0
+	counter: 0,
+	result: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				counter: state.counter - 10
+			};
+		case "SAVE_COUNTER":
+			return {
+				...state,
+				result: state.result.concat({ id: new Date(), value: state.counter })
 			};
 		default:
 			return state;
