@@ -1,4 +1,4 @@
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actions/actions";
 
 const initialState = {
 	result: []
@@ -11,14 +11,14 @@ const reducer = (state = initialState, action) => {
 				...state,
 				result: state.result.concat({
 					id: new Date(),
-					value: action.payload.counterValue
+					value: action.payload.value
 				})
 			};
 		case actionTypes.DELETE_ELEMENT:
 			return {
 				...state,
 				result: state.result.filter(res => {
-					return res.id !== action.payload.elementId;
+					return res.id !== action.payload.value;
 				})
 			};
 		default:
