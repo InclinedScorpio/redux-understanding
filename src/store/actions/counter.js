@@ -7,7 +7,8 @@ export const increment = () => {
 };
 
 export const addition = value => {
-	return dispatch => {
+	return (dispatch, getState) => {
+		console.log("#######", getState().ctr.counter);
 		setTimeout(() => {
 			dispatch({
 				type: actionTypes.ADD_COUNTER,
